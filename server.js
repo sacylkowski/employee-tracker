@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const db = require("./db/connection");
+
 
 async function askMainQuestions() {
     const { choice } = await prompt([
@@ -53,7 +53,7 @@ switch (choice) {
 }
 
 async function viewAllDepartments() {
-    const 
+
 }
 
 function quit() {
