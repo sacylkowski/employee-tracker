@@ -1,5 +1,7 @@
-const inquirer = require("inquirer");
+const { prompt } = require("inquirer");
+const database = require("./db/employee_db");
 
+askMainQuestions();
 
 async function askMainQuestions() {
     const { choice } = await prompt([
@@ -46,6 +48,8 @@ async function askMainQuestions() {
 switch (choice) {
     case "view_departments":
         return viewAllDepartments();
+    case "add_department":
+        return addADepartment();   
     default:
         return quit();
 }
@@ -53,7 +57,21 @@ switch (choice) {
 }
 
 async function viewAllDepartments() {
+    const viewAD = await database.viewAllDepartments();
+    console.log(viewAD);
+    askMainQuestions();
+}
 
+async function addADepartment() {
+    const department = await prompt([
+        {
+            name: "Name",
+            message: "What is the name of the new department?"
+        }
+    ]);
+    await database.addADepartment(department);
+    console.log(`Added ${department.name} to the database`);
+    askMainQuestions();
 }
 
 function quit() {
