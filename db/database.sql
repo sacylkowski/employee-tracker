@@ -6,11 +6,11 @@ CREATE DATABASE employeeDb;
 USE employeeDb;
 
 
-DROP TABLE IF EXISTS department;
+-- DROP TABLE IF EXISTS department;
 
-DROP TABLE IF EXISTS role;
+-- DROP TABLE IF EXISTS role;
 
-DROP TABLE IF EXISTS employee;
+-- DROP TABLE IF EXISTS employee;
 
 -- creating the department table --
 CREATE TABLE department (

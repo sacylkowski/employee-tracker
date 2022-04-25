@@ -21,9 +21,13 @@ class EmployeeDB {
         return this.connection.query("INSERT INTO department SET ?", department)
     }
 
-    // addARole(department) {
-    //     return this.connection.query("INSERT INTO role SET ?", department)
-    // }
+    addARole(role) {
+        return this.connection.query("INSERT INTO role SET ?", role)
+    }
+
+    addAnEmployee(employee) {
+        return this.connection.query("INSERT INTO employee SET ?", employee)
+    }
 }
 
 module.exports = new EmployeeDB(db);

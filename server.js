@@ -57,6 +57,8 @@ switch (choice) {
         return addADepartment();   
     case "add_role":
         return addARole();
+    case "add_employee":
+        return addAnEmployee();
     default:
         return quit();
 }
@@ -93,17 +95,29 @@ async function addADepartment() {
     askMainQuestions();
 }
 
-// async function addARole() {
-//     const  = await prompt([
-//         {
-//             name: "name",
-//             message: "What is the name of the new role?"
-//         }
-//     ]);
-//     await database.addADepartment(department);
-//     console.log(`Added ${department.name} to the database`);
-//     askMainQuestions();
-// }
+async function addARole() {
+    const role = await prompt([
+        {
+            name: "name",
+            message: "What is the name of the new role?"
+        }
+    ]);
+    await database.addARole(role);
+    console.log(`Added ${role.name} to the database`);
+    askMainQuestions();
+}
+
+async function addAnEmployee() {
+    const employee = await prompt([
+        {
+            name: "name",
+            message: "What is the name of the new employee?"
+        }
+    ]);
+    await database.addAnEmployee(employee);
+    console.log(`Added ${employee.name} to the database`);
+    askMainQuestions();
+}
 
 function quit() {
     console.log("Bye")
