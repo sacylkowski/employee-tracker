@@ -1,5 +1,6 @@
 const { prompt } = require("inquirer");
 const database = require("./db/employee_db");
+require("console.table");
 
 askMainQuestions();
 
@@ -48,8 +49,14 @@ async function askMainQuestions() {
 switch (choice) {
     case "view_departments":
         return viewAllDepartments();
+    case "view_roles":
+        return viewAllRoles();
+    case "view_employees":
+        return viewAllEmployees();
     case "add_department":
         return addADepartment();   
+    case "add_role":
+        return addARole();
     default:
         return quit();
 }
@@ -58,14 +65,26 @@ switch (choice) {
 
 async function viewAllDepartments() {
     const viewAD = await database.viewAllDepartments();
-    console.log(viewAD);
+    console.table(viewAD);
+    askMainQuestions();
+}
+
+async function viewAllRoles() {
+    const viewAR = await database.viewAllRoles();
+    console.table(viewAR);
+    askMainQuestions();
+}
+
+async function viewAllEmployees() {
+    const viewAE = await database.viewAllEmployees();
+    console.table(viewAE);
     askMainQuestions();
 }
 
 async function addADepartment() {
     const department = await prompt([
         {
-            name: "Name",
+            name: "name",
             message: "What is the name of the new department?"
         }
     ]);
@@ -73,6 +92,18 @@ async function addADepartment() {
     console.log(`Added ${department.name} to the database`);
     askMainQuestions();
 }
+
+// async function addARole() {
+//     const  = await prompt([
+//         {
+//             name: "name",
+//             message: "What is the name of the new role?"
+//         }
+//     ]);
+//     await database.addADepartment(department);
+//     console.log(`Added ${department.name} to the database`);
+//     askMainQuestions();
+// }
 
 function quit() {
     console.log("Bye")
