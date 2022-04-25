@@ -100,18 +100,39 @@ async function addARole() {
         {
             name: "name",
             message: "What is the name of the new role?"
+        },
+        {
+            name: "salary",
+            message: "What is the salary of the new role?"
+        },
+        {
+            name: "department",
+            message: "What department is the new role in?"
         }
     ]);
     await database.addARole(role);
-    console.log(`Added ${role.name} to the database`);
+    console.log(role)
+    // console.log(`Added ${role.name} to the database`);
     askMainQuestions();
 }
 
 async function addAnEmployee() {
     const employee = await prompt([
         {
-            name: "name",
-            message: "What is the name of the new employee?"
+            name: "fname",
+            message: "What is the first name of the new employee?"
+        },
+        {
+            name: "lname",
+            message: "What is the last name of the new employee?"
+        },
+        {
+            name: "role",
+            message: "What is the role of the new employee?"
+        },
+        {
+            name: "manager",
+            message: "Who is the manager of the new employee?"
         }
     ]);
     await database.addAnEmployee(employee);
