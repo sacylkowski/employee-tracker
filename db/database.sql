@@ -20,8 +20,8 @@ CREATE TABLE department (
 
 CREATE TABLE role (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL,
-  salary DECIMAL NOT NULL,
+  title VARCHAR(30) NOT NULL,
+  salary INTEGER NOT NULL,
   department INTEGER,
   FOREIGN KEY (department) REFERENCES department(id) ON DELETE CASCADE
 );

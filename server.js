@@ -96,9 +96,16 @@ async function addADepartment() {
 }
 
 async function addARole() {
+    const departments = await database.viewAllDepartments();
+    // console.log(departments)
+    let departmentChoices = [];
+    departments.map((department) => {
+        departmentChoices.push({name: department.name, value: department.id});
+    })
+    // console.log(departmentChoices)
     const role = await prompt([
         {
-            name: "name",
+            name: "title",
             message: "What is the name of the new role?"
         },
         {
@@ -106,10 +113,13 @@ async function addARole() {
             message: "What is the salary of the new role?"
         },
         {
+            type: "list",
             name: "department",
-            message: "What department is the new role in?"
+            message: "What department is the new role in?",
+            choices: departmentChoices
         }
     ]);
+    role.salary = parseInt(role.salary);
     await database.addARole(role);
     console.log(role)
     // console.log(`Added ${role.name} to the database`);
@@ -117,18 +127,27 @@ async function addARole() {
 }
 
 async function addAnEmployee() {
+    const roles = await database.viewAllRoles();
+    console.log(roles)
+    let roleChoices = [];
+    roles.map((role) => {
+        roleChoices.push({name: role.name, value: role.id});
+    })
+    console.log(roleChoices)
     const employee = await prompt([
         {
-            name: "fname",
+            name: "first_name",
             message: "What is the first name of the new employee?"
         },
         {
-            name: "lname",
+            name: "last_name",
             message: "What is the last name of the new employee?"
         },
         {
+            type: "list",
             name: "role",
-            message: "What is the role of the new employee?"
+            message: "What is the role of the new employee?",
+            choices: roleChoices
         },
         {
             name: "manager",
@@ -141,6 +160,6 @@ async function addAnEmployee() {
 }
 
 function quit() {
-    console.log("Bye")
+    console.log("Thanks a bunch!")
     process.exit();
 };

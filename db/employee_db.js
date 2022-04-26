@@ -22,11 +22,11 @@ class EmployeeDB {
     }
 
     addARole(role) {
-        return this.connection.query("INSERT INTO role (name, salary, department) VALUES (?, ?, ?)", role)
+        return this.connection.query("INSERT INTO role (title, salary, department) VALUES (?)", role)
     }
 
     addAnEmployee(employee) {
-        return this.connection.query("INSERT INTO employee (first_name, last_name, role, manager) VALUES (?, ?, ?, ?)", employee)
+        return this.connection.query("INSERT INTO employee (first_name, last_name, role, manager) VALUES (?)", employee)
     }
 }
 
