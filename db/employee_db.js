@@ -10,7 +10,7 @@ class EmployeeDB {
     }
 
     viewAllRoles() {
-        return this.connection.query("SELECT * FROM role");
+        return this.connection.query("SELECT role.*, department.name AS department FROM role LEFT JOIN department ON role.department = department.id");
     }
 
     viewAllEmployees() {
@@ -22,7 +22,7 @@ class EmployeeDB {
     }
 
     addARole(role) {
-        return this.connection.query("INSERT INTO role (title, salary, department) VALUES (?)", role)
+        return this.connection.query("INSERT INTO role SET ?", role)
     }
 
     addAnEmployee(employee) {

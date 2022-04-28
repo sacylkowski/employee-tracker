@@ -121,8 +121,7 @@ async function addARole() {
     ]);
     role.salary = parseInt(role.salary);
     await database.addARole(role);
-    console.log(role)
-    // console.log(`Added ${role.name} to the database`);
+    // console.log(`Added ${role.title} to the database`);
     askMainQuestions();
 }
 
@@ -131,7 +130,7 @@ async function addAnEmployee() {
     console.log(roles)
     let roleChoices = [];
     roles.map((role) => {
-        roleChoices.push({name: role.name, value: role.id});
+        roleChoices.push({name: role.title, value: role.id});
     })
     console.log(roleChoices)
     const employee = await prompt([
@@ -150,12 +149,12 @@ async function addAnEmployee() {
             choices: roleChoices
         },
         {
-            name: "manager",
+            name: "manager_id",
             message: "Who is the manager of the new employee?"
         }
     ]);
     await database.addAnEmployee(employee);
-    console.log(`Added ${employee.name} to the database`);
+    // console.log(`Added ${employee.name} to the database`);
     askMainQuestions();
 }
 

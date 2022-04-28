@@ -6,11 +6,11 @@ CREATE DATABASE employeeDb;
 USE employeeDb;
 
 
--- DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS department;
 
--- DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS role;
 
--- DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS employee;
 
 -- creating the department table --
 CREATE TABLE department (
@@ -21,7 +21,7 @@ CREATE TABLE department (
 CREATE TABLE role (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30) NOT NULL,
-  salary INTEGER NOT NULL,
+  salary DECIMAL(5,2) NOT NULL,
   department INTEGER,
   FOREIGN KEY (department) REFERENCES department(id) ON DELETE CASCADE
 );
@@ -31,6 +31,6 @@ CREATE TABLE employee (
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   role INTEGER NOT NULL,
-  manager_id INTEGER,
+  manager INTEGER,
   FOREIGN KEY (role) REFERENCES role(id) ON DELETE CASCADE
 );
