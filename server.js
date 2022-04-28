@@ -127,7 +127,7 @@ async function addARole() {
 
 async function addAnEmployee() {
     const roles = await database.viewAllRoles();
-    console.log(roles)
+    // console.log(roles)
     let roleChoices = [];
     roles.map((role) => {
         roleChoices.push({name: role.title, value: role.id});
@@ -149,7 +149,7 @@ async function addAnEmployee() {
             choices: roleChoices
         },
         {
-            name: "manager_id",
+            name: "manager",
             message: "Who is the manager of the new employee?"
         }
     ]);
