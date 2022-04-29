@@ -1,28 +1,26 @@
 # employee-tracker
 
  ## Description
-  This application can be used to write and save notes.  It uses Express.js to save and retrieve note data from a JSON file.  You can add a note title, and the note itself then save it.  UUID creates an unique ID to each note, so then you are able to delete the notes as you finish the tasks.
+  This application creates an employee database, complete will departments, roles, and employees.  You get prompts from Inquirer to see tables from the database, add to the database, or update it.  
 
   ## Installation
   To install required dependecies, use: npm install 
 
   ## Usage
-  Click through the homepage and you'll be taken to where the notes are stored.  
-  <img src="note-taker.png" alt="image of program running" width="1206" />
+  To run the app, you need to log into mysql, and source db/database.sql.  Then quit to return back to your command line.  Run node server.js to start the application.
+
+  <img src="Example-picture.png" alt="image of program running" width="1206" />
   
-  <a href="https://gentle-cliffs-95734.herokuapp.com/">Here is a video demo.</a>
+  <a href="https://drive.google.com/file/d/15FGJm1cbebhtEXRqaTf_wuaV7OmfjJ5I/view">Here is a video demo.</a>
 
 
  ## Built With
  This application is built with: <br />
- * HTML
- * CSS
- * Bootstrap
- * JavaScript
- * JQuery
  * Node.js
- * Express.js
- * uuid
+ * Inquirer
+ * MySql2
+ * dotenv
+ * console.table
 
   ## Questions
   If you have any questions, please reach out on <a href="https://github.com/sacylkowski/">GitHub</a> or you can <a href="mailto:sacylkowski@gmail.com">E-mail me</a>.
