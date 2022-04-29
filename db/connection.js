@@ -1,4 +1,6 @@
 const mysql = require("mysql2");
+const util = require("util");
+require("dotenv").config();
 
 // connect to database
 const db = mysql.createConnection(
@@ -8,11 +10,15 @@ const db = mysql.createConnection(
         user: "root",
 
         // your SQL password
-        password: "Bananabread27",
+        password: process.env.BLUEBERRY_BABKA,
 
-        database: "employee"
+        database: "employeeDb"
     },
-    console.log("Connected to the employee database.")
+    console.log("Connected to the employeeDb database.")
 );
+
+db.connect();
+
+db.query = util.promisify(db.query);
 
 module.exports = db;
