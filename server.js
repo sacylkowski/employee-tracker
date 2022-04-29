@@ -4,6 +4,7 @@ require("console.table");
 
 askMainQuestions();
 
+// start main prompt with questions
 async function askMainQuestions() {
     const { choice } = await prompt([
         {
@@ -46,6 +47,7 @@ async function askMainQuestions() {
             ],       
          },
     ])
+// switch statement 
 switch (choice) {
     case "view_departments":
         return viewAllDepartments();
@@ -59,6 +61,8 @@ switch (choice) {
         return addARole();
     case "add_employee":
         return addAnEmployee();
+    case "update_employee":
+        return updateEmployeeRole();
     default:
         return quit();
 }
@@ -95,9 +99,11 @@ async function addADepartment() {
     askMainQuestions();
 }
 
+
 async function addARole() {
     const departments = await database.viewAllDepartments();
     // console.log(departments)
+    // finds all departments (names and ids) and pushes them into an empty array
     let departmentChoices = [];
     departments.map((department) => {
         departmentChoices.push({name: department.name, value: department.id});
@@ -121,18 +127,19 @@ async function addARole() {
     ]);
     role.salary = parseInt(role.salary);
     await database.addARole(role);
-    // console.log(`Added ${role.title} to the database`);
+    console.log(`Added ${role.title} to the database`);
     askMainQuestions();
 }
 
 async function addAnEmployee() {
     const roles = await database.viewAllRoles();
     // console.log(roles)
+     // finds all roles (names and ids) and pushes them into an empty array
     let roleChoices = [];
     roles.map((role) => {
         roleChoices.push({name: role.title, value: role.id});
     })
-    console.log(roleChoices)
+    // console.log(roleChoices)
     const employee = await prompt([
         {
             name: "first_name",
@@ -154,7 +161,41 @@ async function addAnEmployee() {
         }
     ]);
     await database.addAnEmployee(employee);
-    // console.log(`Added ${employee.name} to the database`);
+    console.log(`Added ${employee.first_name} to the database`);
+    askMainQuestions();
+}
+
+async function updateEmployeeRole() {
+    const employees = await database.viewAllEmployees();
+    // console.log(employees)
+    let employeeChoices = [];
+    employees.map((employee) => {
+        employeeChoices.push({name: employee.first_name, value: employee.id});
+    })
+    // console.log(employeeChoices)
+    const roles = await database.viewAllRoles();
+    // console.log(roles)
+    let roleChoices = [];
+    roles.map((role) => {
+        roleChoices.push({name: role.title, value: role.id});
+    })
+    const employee = await prompt([
+        {
+            type: "list",
+            name: "employee",
+            message: "Which employee's role would you like to update?",
+            choices: employeeChoices
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "What is the employee's new role?",
+            choices: roleChoices
+        }
+    ]);
+    // console.log(employee);
+    await database.updateEmployeeRole(employee.employee, employee.role);
+    // console.log(`Updated ${employee.first_name}'s role in the database.`);
     askMainQuestions();
 }
 

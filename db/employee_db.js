@@ -28,6 +28,10 @@ class EmployeeDB {
     addAnEmployee(employee) {
         return this.connection.query("INSERT INTO employee SET ?", employee)
     }
+
+    updateEmployeeRole(employee, role) {
+        return this.connection.query("UPDATE employee SET role = ? WHERE id = ?", [role, employee])
+    }
 }
 
 module.exports = new EmployeeDB(db);
